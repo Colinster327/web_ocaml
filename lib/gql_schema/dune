@@ -1,0 +1,3 @@
+(library
+ (name gql_schema)
+ (libraries dream))

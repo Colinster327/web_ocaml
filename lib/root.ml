@@ -1,4 +1,8 @@
 let root = 
   Dream.run
   @@ Dream.logger
-  @@ fun _ -> Dream.html "Hello world!"
+  @@ Dream.origin_referrer_check
+  @@ Dream.router [
+    Dream.any "/graphql" (Dream.graphql Lwt.return Gql_schema.Schema.schema);
+    Dream.get "/" (Dream.graphiql "/graphql");
+  ]
