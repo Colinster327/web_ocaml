@@ -11,15 +11,15 @@
 
 (maintainers "Colinster327")
 
-(license LICENSE)
+(license MIT)
 
-(documentation https://github.com/colinster327/web_ocaml/README.md)
+(documentation https://github.com/Colinster327/web_ocaml/blob/main/README.md)
 
 (package
  (name web_ocaml)
  (synopsis "A test web ocaml app")
  (description "This project serves to practice using ocaml in a web-framework called dream")
- (depends ocaml dune)
+ (depends ocaml dream dune)
  (tags
   (web ocaml practice)))
 
