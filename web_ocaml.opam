@@ -1,0 +1,30 @@
+opam-version: "2.0"
+synopsis: "A test web ocaml app"
+description: "This project serves to practice using ocaml in a web-framework called dream"
+maintainer: ["Colinster327"]
+authors: ["Colinster327"]
+license: "LICENSE"
+tags: ["web" "ocaml" "practice"]
+homepage: "https://github.com/Colinster327/web_ocaml"
+doc: "https://github.com/Colinster327/web_ocaml/README.md"
+bug-reports: "https://github.com/Colinster327/web_ocaml/issues"
+depends: [
+  "ocaml"
+  "dune" {>= "3.16"}
+  "odoc" {with-doc}
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+dev-repo: "https://github.com/Colinster327/web_ocaml.git"
