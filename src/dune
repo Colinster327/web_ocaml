@@ -1,4 +1,4 @@
 (executable
  (public_name web_ocaml)
  (name main)
-  (libraries web_ocaml))
+  (libraries gql dotenv))

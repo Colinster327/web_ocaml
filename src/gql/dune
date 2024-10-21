@@ -1,0 +1,5 @@
+(library
+ (name gql)
+ (libraries dream dotenv pgocaml)
+ (preprocess
+  (pps pgocaml_ppx)))

@@ -18,8 +18,9 @@
 (package
  (name web_ocaml)
  (synopsis "A test web ocaml app")
- (description "This project serves to practice using ocaml in a web-framework called dream")
- (depends ocaml dream dune)
+ (description
+  "This project serves to practice using ocaml in a web-framework called dream")
+ (depends ocaml dream dune dotenv pgocaml pgocaml_ppx)
  (tags
   (web ocaml practice)))
 

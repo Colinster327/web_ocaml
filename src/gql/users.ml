@@ -1,6 +1,6 @@
 type user = {id : int; name : string option}
 
-let static_users = [
+let static_users = ref [
   {id = 1; name = Some "Alice"};
   {id = 2; name = Some "Bob"};
   {id = 3; name = Some "Charlie"};
@@ -37,29 +37,57 @@ let user: (Dream.request, user option) Graphql_lwt.Schema.typ =
     ]
   )
 
-let users_query =
+let query_user =
+  Graphql_lwt.Schema.(
+    field "user"
+    ~typ: user
+    ~args: Arg.[
+      arg "id" ~typ: (non_null int)
+    ]
+    ~resolve: (fun _info () id' ->
+      List.find_opt (fun {id; _} -> id = id') !static_users
+    )
+  )
+
+let query_users =
   Graphql_lwt.Schema.(
     field "users"
     ~typ: (non_null (list (non_null user)))
     ~args: Arg.[
-      arg "id" ~typ:int;
-      arg "name" ~typ:string
+      arg "id" ~typ: int;
+      arg "name" ~typ: string
     ]
     ~resolve: (fun _info () id name ->
       match id, name with
-      | None, None -> static_users
+      | None, None -> !static_users
       | Some id', None ->
-        (match List.find_opt (fun {id; _} -> id = id') static_users with
+        (match List.find_opt (fun {id; _} -> id = id') !static_users with
         | None -> []
         | Some user -> [user])
       | None, Some name' ->
         List.filter (fun {name; _} -> 
           match name with
             | Some n -> String.equal n name'
-            | None -> false) static_users
+            | None -> false) !static_users
       | Some id', Some name' ->
         List.filter (fun {id; name} -> 
           id = id' && match name with
             | Some n -> String.equal n name'
-            | None -> false) static_users);
+            | None -> false) !static_users
+    )
   ) 
+  
+  let create_user =
+  Graphql_lwt.Schema.(
+    field "createUser" 
+    ~typ: (non_null user)
+    ~args: Arg.[
+      arg "name" ~typ: string
+    ]
+    ~resolve: (fun _info () name ->
+      let id = List.length !static_users + 1 in
+      let new_user = {id; name} in
+      static_users := !static_users @ [new_user];
+      new_user
+    )
+  )
