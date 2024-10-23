@@ -1,4 +1,8 @@
+(include_subdirs qualified)
+
 (executable
  (public_name web_ocaml)
  (name main)
-  (libraries gql dotenv))
+ (libraries dream pgocaml)
+ (preprocess
+  (pps pgocaml_ppx)))

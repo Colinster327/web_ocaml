@@ -23,7 +23,7 @@ let static_users = ref [
   {id = 20; name = Some "Tina"}
 ]
 
-let user: (Dream.request, user option) Graphql_lwt.Schema.typ =
+let user : (Dream.request, user option) Graphql_lwt.Schema.typ =
   Graphql_lwt.Schema.(obj "user"
     ~fields:[
       field "id"

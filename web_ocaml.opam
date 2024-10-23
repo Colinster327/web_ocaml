@@ -12,9 +12,9 @@ doc: "https://github.com/Colinster327/web_ocaml/blob/main/README.md"
 bug-reports: "https://github.com/Colinster327/web_ocaml/issues"
 depends: [
   "ocaml"
+  "ocaml-lsp-server"
   "dream"
   "dune" {>= "3.16"}
-  "dotenv"
   "pgocaml"
   "pgocaml_ppx"
   "odoc" {with-doc}
