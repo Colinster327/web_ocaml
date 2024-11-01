@@ -20,7 +20,7 @@
  (synopsis "A test web ocaml app")
  (description
   "This project serves to practice using ocaml in a web-framework called dream")
- (depends ocaml dream dune pgocaml pgocaml_ppx)
+ (depends ocaml dream dune pgocaml_ppx)
  (tags
   (web ocaml practice)))
 

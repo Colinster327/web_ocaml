@@ -1,0 +1,7 @@
+(include_subdirs qualified)
+
+(library
+ (name gql)
+ (libraries dream pgocaml)
+ (preprocess
+  (pps pgocaml_ppx lwt_ppx)))
